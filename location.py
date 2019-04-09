@@ -1,3 +1,5 @@
+from math import *
+
 # Name: Arti Jain         
 # Course: CPE 202
 # Instructor: Hatalsky 
@@ -12,8 +14,7 @@ class Location: #a location object
         self.lon = lon      # longitude in degrees (-180 to 180)
     #__eq__
     def __eq__(self, other): #overrides what's in python and allows you to compare the data
-                             #isinstance tests if the objects are the same kind of objects, so if you had a Geography object with the data, it would still return false
-        return (isinstance(other, Location) & (self.name == other.name) & (self.lat == other.lat) & (self.lon == other.lon))
+        return (type(other) == Location and (self.name == other.name) and isclose(self.lat, other.lat) and isclose(self.lon, other.lon))
     #__repr__ = how the object is represented, string representation
     def __repr__(self):
         string = "Location('" + self.name + "', " + str(self.lat) + ", " + str(self.lon) + ")"
@@ -33,9 +34,9 @@ def main():
     print("Location 3:",loc3)
     print("Location 4:",loc4)
 
-    print("\nLocation 1 equals Location 2:",loc1==loc2)
-    print("Location 1 equals Location 3:",loc1==loc3) #Once the code changed, this went from False to True
-    print("Location 1 equals Location 4:",loc1==loc4)
+    print("\nLocation 1 equals Location 2:", loc1==loc2)
+    print("Location 1 equals Location 3:", loc1==loc3) #Once the code changed, this went from False to True
+    print("Location 1 equals Location 4:", loc1==loc4)
 
 # When the code is changed, instead of True, True, False, True, the output is all True's
     locations = [loc1, loc2]
